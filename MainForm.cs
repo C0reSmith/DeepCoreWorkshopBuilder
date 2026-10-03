@@ -68,8 +68,11 @@ namespace DeepCoreWorkshopBuilder
 
                 FileInfo imageFile = new FileInfo(dialog.FileName);
 
+                string previewExtension =
+                Path.GetExtension(dialog.FileName);
+
                 lblPreviewStatus.Text =
-                    $"✓ {imageFile.Name} — {image.Width} × {image.Height}";
+                    $"✓ {imageFile.Name} — {image.Width} × {image.Height} → Preview{previewExtension}";
             }
         }
 
@@ -94,8 +97,11 @@ namespace DeepCoreWorkshopBuilder
 
                 FileInfo imageFile = new FileInfo(dialog.FileName);
 
+                string thumbnailExtension =
+                Path.GetExtension(dialog.FileName);
+
                 lblThumbnailStatus.Text =
-                    $"✓ {imageFile.Name} — {image.Width} × {image.Height}";
+                    $"✓ {imageFile.Name} — {image.Width} × {image.Height} → thumb{thumbnailExtension}";
             }
         }
 
