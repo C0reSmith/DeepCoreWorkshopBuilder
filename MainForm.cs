@@ -385,6 +385,86 @@ namespace DeepCoreWorkshopBuilder
             // BUILD COMPLETE
             // ------------------------------------------------------------
 
+            // ------------------------------------------------------------
+            // VERIFY PACKAGE - PLUGIN DLL
+            // ------------------------------------------------------------
+
+            if (!File.Exists(destinationDllPath))
+            {
+                MessageBox.Show(
+                    "The plugin DLL could not be found in the finished Workshop package.",
+                    "Package Verification Failed",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+
+                lblBuildStatus.Text =
+                    "Build failed - plugin DLL verification failed.";
+
+                btnOpenPackageFolder.Enabled = false;
+
+                return;
+            }
+
+            // ------------------------------------------------------------
+            // VERIFY PACKAGE - ABOUT.XML
+            // ------------------------------------------------------------
+
+            if (!File.Exists(aboutXmlPath))
+            {
+                MessageBox.Show(
+                    "About.xml could not be found in the finished Workshop package.",
+                    "Package Verification Failed",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+
+                lblBuildStatus.Text =
+                    "Build failed - About.xml verification failed.";
+
+                btnOpenPackageFolder.Enabled = false;
+
+                return;
+            }
+
+            // ------------------------------------------------------------
+            // VERIFY PACKAGE - PREVIEW IMAGE
+            // ------------------------------------------------------------
+
+            if (!File.Exists(destinationPreviewPath))
+            {
+                MessageBox.Show(
+                    "The preview image could not be found in the finished Workshop package.",
+                    "Package Verification Failed",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+
+                lblBuildStatus.Text =
+                    "Build failed - preview image verification failed.";
+
+                btnOpenPackageFolder.Enabled = false;
+
+                return;
+            }
+
+            // ------------------------------------------------------------
+            // VERIFY PACKAGE - THUMBNAIL IMAGE
+            // ------------------------------------------------------------
+
+            if (!File.Exists(destinationThumbnailPath))
+            {
+                MessageBox.Show(
+                    "The thumbnail image could not be found in the finished Workshop package.",
+                    "Package Verification Failed",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+
+                lblBuildStatus.Text =
+                    "Build failed - thumbnail image verification failed.";
+
+                btnOpenPackageFolder.Enabled = false;
+
+                return;
+            }
+
             lblBuildStatus.Text =
                 "✓ Workshop package built successfully";
 
