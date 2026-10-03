@@ -335,6 +335,18 @@ namespace DeepCoreWorkshopBuilder
             }
 
             // ------------------------------------------------------------
+            // BUILD STARTING
+            // ------------------------------------------------------------
+
+            lblBuildStatus.Text = "Building Workshop package...";
+
+            btnBuildPackage.Enabled = false;
+            btnNewPackage.Enabled = false;
+            btnOpenPackageFolder.Enabled = false;
+
+            Application.DoEvents();
+
+            // ------------------------------------------------------------
             // BUILD WORKSHOP PACKAGE
             // ------------------------------------------------------------
 
@@ -364,8 +376,16 @@ namespace DeepCoreWorkshopBuilder
                 // No is the safe/default choice.
                 if (result != DialogResult.Yes)
                 {
-                    lblBuildStatus.Text = "Build cancelled.";
-                    return;
+                    if (result != DialogResult.Yes)
+                    {
+                        lblBuildStatus.Text = "Build cancelled.";
+
+                        // Restore the buttons because the build was cancelled.
+                        btnBuildPackage.Enabled = true;
+                        btnNewPackage.Enabled = true;
+
+                        return;
+                    }
                 }
             }
 
@@ -600,6 +620,10 @@ namespace DeepCoreWorkshopBuilder
                 "✓ Workshop package built successfully";
 
             btnOpenPackageFolder.Enabled = true;
+
+            // Restore the build controls now that the build is complete.
+            btnBuildPackage.Enabled = true;
+            btnNewPackage.Enabled = true;
 
             // ------------------------------------------------------------
             // BUILD SUMMARY
