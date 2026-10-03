@@ -9,6 +9,13 @@ namespace DeepCoreWorkshopBuilder
         public MainForm()
         {
             InitializeComponent();
+
+            // Load the saved default author.
+            txtAuthor.Text = Properties.Settings.Default.DefaultAuthor;
+
+            // Load the saved output folder.
+            txtOutputFolder.Text =
+                Properties.Settings.Default.DefaultOutputFolder;
         }
 
         private void btnBrowseDll_Click(object sender, EventArgs e)
@@ -97,6 +104,12 @@ namespace DeepCoreWorkshopBuilder
                 if (folderDialog.ShowDialog() == DialogResult.OK)
                 {
                     txtOutputFolder.Text = folderDialog.SelectedPath;
+
+                    Properties.Settings.Default.DefaultOutputFolder =
+                        folderDialog.SelectedPath;
+
+                    Properties.Settings.Default.Save();
+
                 }
             }
         }
