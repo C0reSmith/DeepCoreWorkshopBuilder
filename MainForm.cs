@@ -6,6 +6,13 @@ namespace DeepCoreWorkshopBuilder
 {
     public partial class MainForm : Form
     {
+        // Tracks whether the user has manually edited the Mod ID.
+        private bool modIdManuallyEdited = false;
+
+        // Prevents automatic Mod ID updates from being mistaken
+        // for a manual user edit.
+        private bool updatingModIdAutomatically = false;
+
         public MainForm()
         {
             InitializeComponent();
@@ -531,8 +538,48 @@ namespace DeepCoreWorkshopBuilder
             lblBuildStatus.Text = "Ready to build";
             btnOpenPackageFolder.Enabled = false;
 
+            // Allow automatic Mod ID generation again for the next package.
+            modIdManuallyEdited = false;
+
             // Put the cursor ready for the next mod.
             txtModName.Focus();
+        }
+
+        private void txtModName_TextChanged(object sender, EventArgs e)
+        {
+            // If the user has manually changed the Mod ID,
+            // leave their custom value alone.
+            if (modIdManuallyEdited)
+                return;
+
+            string modName = txtModName.Text.Trim();
+
+            // Remove spaces to create a clean DeepCore Mod ID.
+            string cleanName = modName.Replace(" ", "");
+
+            updatingModIdAutomatically = true;
+
+            if (string.IsNullOrWhiteSpace(cleanName))
+            {
+                txtModId.Clear();
+            }
+            else
+            {
+                txtModId.Text =
+                    $"DeepCoreMods.{cleanName}";
+            }
+
+            updatingModIdAutomatically = false;
+        }
+
+        private void txtModId_TextChanged(object sender, EventArgs e)
+        {
+            // Ignore changes made by the automatic Mod ID generator.
+            if (updatingModIdAutomatically)
+                return;
+
+            // Any other change was made manually by the user.
+            modIdManuallyEdited = true;
         }
     }
 }

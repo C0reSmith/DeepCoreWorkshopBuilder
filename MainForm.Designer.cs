@@ -178,6 +178,7 @@
             txtModId.Name = "txtModId";
             txtModId.Size = new Size(350, 23);
             txtModId.TabIndex = 3;
+            txtModId.TextChanged += txtModId_TextChanged;
             // 
             // lblModId
             // 
@@ -194,6 +195,7 @@
             txtModName.Name = "txtModName";
             txtModName.Size = new Size(350, 23);
             txtModName.TabIndex = 1;
+            txtModName.TextChanged += txtModName_TextChanged;
             // 
             // lblModName
             // 
@@ -353,7 +355,7 @@
             // 
             // btnNewPackage
             // 
-            btnNewPackage.Location = new Point(864, 70);
+            btnNewPackage.Location = new Point(889, 71);
             btnNewPackage.Name = "btnNewPackage";
             btnNewPackage.Size = new Size(106, 35);
             btnNewPackage.TabIndex = 6;
@@ -394,7 +396,7 @@
             // 
             // btnBrowseOutput
             // 
-            btnBrowseOutput.Location = new Point(880, 30);
+            btnBrowseOutput.Location = new Point(905, 31);
             btnBrowseOutput.Name = "btnBrowseOutput";
             btnBrowseOutput.Size = new Size(90, 29);
             btnBrowseOutput.TabIndex = 2;
@@ -407,7 +409,7 @@
             txtOutputFolder.Location = new Point(120, 31);
             txtOutputFolder.Name = "txtOutputFolder";
             txtOutputFolder.ReadOnly = true;
-            txtOutputFolder.Size = new Size(750, 23);
+            txtOutputFolder.Size = new Size(775, 23);
             txtOutputFolder.TabIndex = 1;
             // 
             // lblOutputFolder
