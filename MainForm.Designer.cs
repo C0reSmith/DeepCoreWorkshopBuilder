@@ -103,6 +103,7 @@
             // 
             // grpModDetails
             // 
+            grpModDetails.Controls.Add(btnNewPackage);
             grpModDetails.Controls.Add(txtDescription);
             grpModDetails.Controls.Add(lblDescription);
             grpModDetails.Controls.Add(txtVersion);
@@ -115,7 +116,7 @@
             grpModDetails.Controls.Add(lblModName);
             grpModDetails.Location = new Point(25, 110);
             grpModDetails.Name = "grpModDetails";
-            grpModDetails.Size = new Size(500, 300);
+            grpModDetails.Size = new Size(500, 323);
             grpModDetails.TabIndex = 1;
             grpModDetails.TabStop = false;
             grpModDetails.Text = "Mod Details";
@@ -339,7 +340,6 @@
             // grpBuild
             // 
             grpBuild.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            grpBuild.Controls.Add(btnNewPackage);
             grpBuild.Controls.Add(btnOpenPackageFolder);
             grpBuild.Controls.Add(lblBuildStatus);
             grpBuild.Controls.Add(btnBuildPackage);
@@ -355,7 +355,7 @@
             // 
             // btnNewPackage
             // 
-            btnNewPackage.Location = new Point(889, 71);
+            btnNewPackage.Location = new Point(364, 278);
             btnNewPackage.Name = "btnNewPackage";
             btnNewPackage.Size = new Size(106, 35);
             btnNewPackage.TabIndex = 6;
