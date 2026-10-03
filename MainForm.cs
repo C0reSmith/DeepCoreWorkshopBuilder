@@ -297,11 +297,16 @@ namespace DeepCoreWorkshopBuilder
             // COPY PREVIEW IMAGE
             // ------------------------------------------------------------
 
-            // Keep the original preview image filename.
-            string previewFileName =
-                Path.GetFileName(txtPreviewPath.Text.Trim());
+            // Get the original preview image extension.
+            string previewExtension =
+                Path.GetExtension(txtPreviewPath.Text.Trim());
 
-            // Build the destination path inside the Workshop package.
+            // Rename the copied preview image to "Preview"
+            // while keeping its original file type.
+            string previewFileName =
+                "Preview" + previewExtension;
+
+            // Build the destination path inside the About folder.
             string destinationPreviewPath = Path.Combine(
                 aboutFolder,
                 previewFileName);
@@ -321,11 +326,16 @@ namespace DeepCoreWorkshopBuilder
             // COPY THUMBNAIL IMAGE
             // ------------------------------------------------------------
 
-            // Keep the original thumbnail filename.
-            string thumbnailFileName =
-                Path.GetFileName(txtThumbnailPath.Text.Trim());
+            // Get the original thumbnail image extension.
+            string thumbnailExtension =
+                Path.GetExtension(txtThumbnailPath.Text.Trim());
 
-            // Build the destination path inside the Workshop package.
+            // Rename the copied thumbnail image to "thumb"
+            // while keeping its original file type.
+            string thumbnailFileName =
+                "thumb" + thumbnailExtension;
+
+            // Build the destination path inside the About folder.
             string destinationThumbnailPath = Path.Combine(
                 aboutFolder,
                 thumbnailFileName);
