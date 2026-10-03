@@ -321,7 +321,7 @@ namespace DeepCoreWorkshopBuilder
             lblBuildStatus.Text =
                 $"Thumbnail copied: {thumbnailFileName}";
 
-            
+
             // ------------------------------------------------------------
             // CREATE ABOUT.XML
             // ------------------------------------------------------------
@@ -368,12 +368,32 @@ namespace DeepCoreWorkshopBuilder
                 "About.xml created.";
 
 
-            // Update the status so we can see that the first build stage worked.
+            // ------------------------------------------------------------
+            // BUILD COMPLETE
+            // ------------------------------------------------------------
+
             lblBuildStatus.Text =
-                $"Package folder created: {packageFolder}";
+                "✓ Workshop package built successfully";
 
-            
+            btnOpenPackageFolder.Enabled = true;
 
+        }
+
+        private void btnOpenPackageFolder_Click(object sender, EventArgs e)
+        {
+            string packageFolder = Path.Combine(
+                txtOutputFolder.Text.Trim(),
+                txtModId.Text.Trim());
+
+            if (Directory.Exists(packageFolder))
+            {
+                System.Diagnostics.Process.Start(
+                    new System.Diagnostics.ProcessStartInfo
+                    {
+                        FileName = packageFolder,
+                        UseShellExecute = true
+                    });
+            }
         }
     }
 }
