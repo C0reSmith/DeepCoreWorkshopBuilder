@@ -57,6 +57,7 @@
             txtPreviewPath = new TextBox();
             lblPreview = new Label();
             grpBuild = new GroupBox();
+            btnNewPackage = new Button();
             btnOpenPackageFolder = new Button();
             lblBuildStatus = new Label();
             btnBuildPackage = new Button();
@@ -336,6 +337,7 @@
             // grpBuild
             // 
             grpBuild.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            grpBuild.Controls.Add(btnNewPackage);
             grpBuild.Controls.Add(btnOpenPackageFolder);
             grpBuild.Controls.Add(lblBuildStatus);
             grpBuild.Controls.Add(btnBuildPackage);
@@ -348,6 +350,16 @@
             grpBuild.TabIndex = 4;
             grpBuild.TabStop = false;
             grpBuild.Text = "Build Workshop Package";
+            // 
+            // btnNewPackage
+            // 
+            btnNewPackage.Location = new Point(864, 70);
+            btnNewPackage.Name = "btnNewPackage";
+            btnNewPackage.Size = new Size(106, 35);
+            btnNewPackage.TabIndex = 6;
+            btnNewPackage.Text = "NEW PACKAGE";
+            btnNewPackage.UseVisualStyleBackColor = true;
+            btnNewPackage.Click += btnNewPackage_Click;
             // 
             // btnOpenPackageFolder
             // 
@@ -471,5 +483,6 @@
         private Label lblBuildStatus;
         private Button btnBuildPackage;
         private Button btnOpenPackageFolder;
+        private Button btnNewPackage;
     }
 }

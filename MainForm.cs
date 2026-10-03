@@ -506,5 +506,33 @@ namespace DeepCoreWorkshopBuilder
                     });
             }
         }
+
+        private void btnNewPackage_Click(object sender, EventArgs e)
+        {
+            // Clear mod-specific details.
+            txtModName.Clear();
+            txtModId.Clear();
+            txtDescription.Clear();
+
+            // Clear selected plugin DLL.
+            txtDllPath.Clear();
+            lblDllStatus.Text = "No DLL selected";
+
+            // Clear selected artwork.
+            txtPreviewPath.Clear();
+            lblPreviewStatus.Text = "No preview image selected";
+
+            txtThumbnailPath.Clear();
+            lblThumbnailStatus.Text = "No thumbnail selected";
+
+            // Keep Author, Version and remembered Output Folder.
+
+            // Reset build state.
+            lblBuildStatus.Text = "Ready to build";
+            btnOpenPackageFolder.Enabled = false;
+
+            // Put the cursor ready for the next mod.
+            txtModName.Focus();
+        }
     }
 }
