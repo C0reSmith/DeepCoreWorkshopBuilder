@@ -226,6 +226,114 @@ namespace DeepCoreWorkshopBuilder
 
                 return;
             }
+
+            // ------------------------------------------------------------
+            // WORKSHOP READINESS - VALID MOD ID
+            // ------------------------------------------------------------
+
+            // The Mod ID is also used as the Workshop package folder name,
+            // so it must not contain invalid Windows filename characters.
+            if (txtModId.Text.Trim().IndexOfAny(Path.GetInvalidFileNameChars()) >= 0)
+            {
+                MessageBox.Show(
+                    "The Mod ID contains characters that cannot be used " +
+                    "in a Workshop package folder name.\n\n" +
+                    $"Mod ID: {txtModId.Text.Trim()}",
+                    "Invalid Mod ID",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+
+                lblBuildStatus.Text =
+                    "Build stopped - invalid Mod ID.";
+
+                return;
+            }
+
+            // Windows folder names must not end with a period or space.
+            string modId = txtModId.Text.Trim();
+
+            if (modId.EndsWith("."))
+            {
+                MessageBox.Show(
+                    "The Mod ID cannot end with a period.\n\n" +
+                    $"Mod ID: {modId}",
+                    "Invalid Mod ID",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+
+                lblBuildStatus.Text =
+                    "Build stopped - invalid Mod ID.";
+
+                return;
+            }
+
+            // ------------------------------------------------------------
+            // WORKSHOP READINESS - VERSION
+            // ------------------------------------------------------------
+
+            if (string.IsNullOrWhiteSpace(txtVersion.Text))
+            {
+                MessageBox.Show(
+                    "Please enter a Version number.",
+                    "Missing Version",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+
+                lblBuildStatus.Text =
+                    "Build stopped - version is missing.";
+
+                txtVersion.Focus();
+                return;
+            }
+
+            // Version must use the DeepCore numeric format:
+            // Major.Minor.Patch, for example 1.0.0.
+            string version = txtVersion.Text.Trim();
+
+            string[] versionParts = version.Split('.');
+
+            bool validVersion =
+                versionParts.Length == 3 &&
+                int.TryParse(versionParts[0], out _) &&
+                int.TryParse(versionParts[1], out _) &&
+                int.TryParse(versionParts[2], out _);
+
+            if (!validVersion)
+            {
+                MessageBox.Show(
+                    "Please enter the Version in numeric format.\n\n" +
+                    "Example: 1.0.0\n\n" +
+                    "Do not include the \"v\" prefix.",
+                    "Invalid Version",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+
+                lblBuildStatus.Text =
+                    "Build stopped - invalid version.";
+
+                txtVersion.Focus();
+                return;
+            }
+
+            // ------------------------------------------------------------
+            // WORKSHOP READINESS - AUTHOR
+            // ------------------------------------------------------------
+
+            if (string.IsNullOrWhiteSpace(txtAuthor.Text))
+            {
+                MessageBox.Show(
+                    "Please enter an Author name.",
+                    "Missing Author",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+
+                lblBuildStatus.Text =
+                    "Build stopped - author is missing.";
+
+                txtAuthor.Focus();
+                return;
+            }
+
             // ------------------------------------------------------------
             // BUILD WORKSHOP PACKAGE
             // ------------------------------------------------------------
