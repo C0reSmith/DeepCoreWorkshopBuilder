@@ -470,6 +470,24 @@ namespace DeepCoreWorkshopBuilder
 
             btnOpenPackageFolder.Enabled = true;
 
+            // ------------------------------------------------------------
+            // BUILD SUMMARY
+            // ------------------------------------------------------------
+
+            MessageBox.Show(
+                $"Workshop package built and verified successfully.\n\n" +
+                $"Mod: {txtModName.Text.Trim()}\n" +
+                $"Version: {txtVersion.Text.Trim()}\n\n" +
+                $"Verified:\n" +
+                $"✓ Plugin DLL\n" +
+                $"✓ About.xml\n" +
+                $"✓ Preview image\n" +
+                $"✓ Thumbnail image\n\n" +
+                $"Package:\n{packageFolder}",
+                "Workshop Package Complete",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Information);
+
         }
 
         private void btnOpenPackageFolder_Click(object sender, EventArgs e)
