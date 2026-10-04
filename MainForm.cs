@@ -385,28 +385,27 @@ namespace DeepCoreWorkshopBuilder
                 // No is the safe/default choice.
                 if (result != DialogResult.Yes)
                 {
-                    if (result != DialogResult.Yes)
-                    {
-                        lblBuildStatus.Text = "Build cancelled.";
+                    lblBuildStatus.Text = "Build cancelled.";
 
-                        // Restore the buttons because the build was cancelled.
-                        btnBuildPackage.Enabled = true;
-                        btnNewPackage.Enabled = true;
+                    // Restore the buttons because the build was cancelled.
+                    btnBuildPackage.Enabled = true;
+                    btnNewPackage.Enabled = true;
 
-                        return;
-                    }
+                    return;
                 }
             }
 
-            // Create the package folder if necessary.
-            Directory.CreateDirectory(packageFolder);
+            try
+            {
+                // Create the package folder if necessary.
+                Directory.CreateDirectory(packageFolder);
 
-            // ------------------------------------------------------------
-            // COPY PLUGIN DLL
-            // ------------------------------------------------------------
+                // ------------------------------------------------------------
+                // COPY PLUGIN DLL
+                // ------------------------------------------------------------
 
-            // Keep the original DLL filename.
-            string dllFileName = Path.GetFileName(txtDllPath.Text.Trim());
+                // Keep the original DLL filename.
+                string dllFileName = Path.GetFileName(txtDllPath.Text.Trim());
 
             // Build the destination path inside the Workshop package.
             string destinationDllPath = Path.Combine(
@@ -562,6 +561,11 @@ namespace DeepCoreWorkshopBuilder
 
                 btnOpenPackageFolder.Enabled = false;
 
+                // Restore the build controls so the user can correct
+                // the problem and try the build again.
+                btnBuildPackage.Enabled = true;
+                btnNewPackage.Enabled = true;
+
                 return;
             }
 
@@ -581,6 +585,11 @@ namespace DeepCoreWorkshopBuilder
                     "Build failed - About.xml verification failed.";
 
                 btnOpenPackageFolder.Enabled = false;
+
+                // Restore the build controls so the user can correct
+                // the problem and try the build again.
+                btnBuildPackage.Enabled = true;
+                btnNewPackage.Enabled = true;
 
                 return;
             }
@@ -602,6 +611,11 @@ namespace DeepCoreWorkshopBuilder
 
                 btnOpenPackageFolder.Enabled = false;
 
+                // Restore the build controls so the user can correct
+                // the problem and try the build again.
+                btnBuildPackage.Enabled = true;
+                btnNewPackage.Enabled = true;
+
                 return;
             }
 
@@ -621,6 +635,11 @@ namespace DeepCoreWorkshopBuilder
                     "Build failed - thumbnail image verification failed.";
 
                 btnOpenPackageFolder.Enabled = false;
+
+                // Restore the build controls so the user can correct
+                // the problem and try the build again.
+                btnBuildPackage.Enabled = true;
+                btnNewPackage.Enabled = true;
 
                 return;
             }
@@ -651,7 +670,24 @@ namespace DeepCoreWorkshopBuilder
                 "Workshop Package Complete",
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Information);
+            }
 
+            catch (Exception ex)
+            {
+                lblBuildStatus.Text =
+                    "Build failed - an unexpected error occurred.";
+
+                btnBuildPackage.Enabled = true;
+                btnNewPackage.Enabled = true;
+                btnOpenPackageFolder.Enabled = false;
+
+                MessageBox.Show(
+                    "The Workshop package could not be completed.\n\n" +
+                    $"Error: {ex.Message}",
+                    "Workshop Build Failed",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
         }
 
         private void btnOpenPackageFolder_Click(object sender, EventArgs e)
