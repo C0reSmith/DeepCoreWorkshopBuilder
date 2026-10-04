@@ -7,6 +7,19 @@
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
     <ApplicationIcon>DeepCore Mods Upload Toolbox.ico</ApplicationIcon>
+    <Title>DeepCore Workshop Builder</Title>
+    <Company>DeepCore Mods</Company>
+    <Authors>C0reSmith</Authors>
+    <Product>DeepCore Workshop Builder</Product>
+    <Description>Build, validate and prepare DeepCore Mods packages for the Stationeers Steam Workshop.</Description>
+    <Copyright>Copyright © 2026 C0reSmith</Copyright>
+    <RepositoryUrl>https://github.com/C0reSmith/DeepCoreWorkshopBuilder</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageProjectUrl>https://github.com/C0reSmith/DeepCoreWorkshopBuilder</PackageProjectUrl>
+    <PackageTags>Stationeers;Steam Workshop;DeepCore Mods;Workshop Builder;BepInEx</PackageTags>
+    <PackageReleaseNotes>Initial v1.0.0 release of DeepCore Workshop Builder.
+
+Builds and validates Stationeers Steam Workshop packages for DeepCore Mods, including plugin DLL packaging, Workshop artwork preparation, About.xml generation, package verification, live package preview, and build error handling.</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
