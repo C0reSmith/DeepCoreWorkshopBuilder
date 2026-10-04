@@ -33,6 +33,7 @@
             lblTagline = new Label();
             lblTitle = new Label();
             grpModDetails = new GroupBox();
+            btnNewPackage = new Button();
             txtDescription = new TextBox();
             lblDescription = new Label();
             txtVersion = new TextBox();
@@ -57,7 +58,6 @@
             txtPreviewPath = new TextBox();
             lblPreview = new Label();
             grpBuild = new GroupBox();
-            btnNewPackage = new Button();
             btnOpenPackageFolder = new Button();
             lblBuildStatus = new Label();
             btnBuildPackage = new Button();
@@ -121,6 +121,16 @@
             grpModDetails.TabStop = false;
             grpModDetails.Text = "Mod Details";
             // 
+            // btnNewPackage
+            // 
+            btnNewPackage.Location = new Point(364, 278);
+            btnNewPackage.Name = "btnNewPackage";
+            btnNewPackage.Size = new Size(106, 35);
+            btnNewPackage.TabIndex = 6;
+            btnNewPackage.Text = "NEW PACKAGE";
+            btnNewPackage.UseVisualStyleBackColor = true;
+            btnNewPackage.Click += btnNewPackage_Click;
+            // 
             // txtDescription
             // 
             txtDescription.Location = new Point(120, 191);
@@ -129,6 +139,7 @@
             txtDescription.ScrollBars = ScrollBars.Vertical;
             txtDescription.Size = new Size(350, 75);
             txtDescription.TabIndex = 9;
+            txtDescription.TextChanged += txtDescription_TextChanged;
             // 
             // lblDescription
             // 
@@ -146,6 +157,7 @@
             txtVersion.Size = new Size(120, 23);
             txtVersion.TabIndex = 7;
             txtVersion.Text = "1.0.0";
+            txtVersion.TextChanged += txtVersion_TextChanged;
             // 
             // lblVersion
             // 
@@ -163,6 +175,7 @@
             txtAuthor.Size = new Size(350, 23);
             txtAuthor.TabIndex = 5;
             txtAuthor.Text = "C0reSmith";
+            txtAuthor.TextChanged += txtAuthor_TextChanged;
             // 
             // lblAuthor
             // 
@@ -352,16 +365,6 @@
             grpBuild.TabIndex = 4;
             grpBuild.TabStop = false;
             grpBuild.Text = "Build Workshop Package";
-            // 
-            // btnNewPackage
-            // 
-            btnNewPackage.Location = new Point(364, 278);
-            btnNewPackage.Name = "btnNewPackage";
-            btnNewPackage.Size = new Size(106, 35);
-            btnNewPackage.TabIndex = 6;
-            btnNewPackage.Text = "NEW PACKAGE";
-            btnNewPackage.UseVisualStyleBackColor = true;
-            btnNewPackage.Click += btnNewPackage_Click;
             // 
             // btnOpenPackageFolder
             // 

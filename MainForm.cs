@@ -38,6 +38,9 @@ namespace DeepCoreWorkshopBuilder
             {
                 txtDllPath.Text = dialog.FileName;
 
+             // The selected plugin DLL has changed.
+                MarkPackageChanged();
+
                 FileInfo dllFile = new FileInfo(dialog.FileName);
 
                 double sizeKb = dllFile.Length / 1024.0;
@@ -63,6 +66,9 @@ namespace DeepCoreWorkshopBuilder
             if (dialog.ShowDialog() == DialogResult.OK)
             {
                 txtPreviewPath.Text = dialog.FileName;
+
+             // The selected preview image has changed.
+                MarkPackageChanged();
 
                 using Image image = Image.FromFile(dialog.FileName);
 
@@ -92,6 +98,9 @@ namespace DeepCoreWorkshopBuilder
             if (dialog.ShowDialog() == DialogResult.OK)
             {
                 txtThumbnailPath.Text = dialog.FileName;
+
+             // The selected thumbnail image has changed.
+                MarkPackageChanged();
 
                 using Image image = Image.FromFile(dialog.FileName);
 
@@ -695,6 +704,9 @@ namespace DeepCoreWorkshopBuilder
 
         private void txtModName_TextChanged(object sender, EventArgs e)
         {
+            // The package details have changed since the last build.
+            MarkPackageChanged();
+
             // If the user has manually changed the Mod ID,
             // leave their custom value alone.
             if (modIdManuallyEdited)
@@ -728,6 +740,29 @@ namespace DeepCoreWorkshopBuilder
 
             // Any other change was made manually by the user.
             modIdManuallyEdited = true;
+
+            // The package details have changed since the last build.
+            MarkPackageChanged();
+        }
+
+        private void txtVersion_TextChanged(object sender, EventArgs e)
+        {
+            MarkPackageChanged();
+        }
+        private void MarkPackageChanged()
+        {
+            lblBuildStatus.Text = "Ready to build";
+            btnOpenPackageFolder.Enabled = false;
+        }
+
+        private void txtAuthor_TextChanged(object sender, EventArgs e)
+        {
+            MarkPackageChanged();
+        }
+
+        private void txtDescription_TextChanged(object sender, EventArgs e)
+        {
+            MarkPackageChanged();
         }
     }
 }
