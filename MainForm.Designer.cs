@@ -64,11 +64,14 @@
             btnBrowseOutput = new Button();
             txtOutputFolder = new TextBox();
             lblOutputFolder = new Label();
+            grpPackagePreview = new GroupBox();
+            txtPackagePreview = new TextBox();
             pnlHeader.SuspendLayout();
             grpModDetails.SuspendLayout();
             grpPlugin.SuspendLayout();
             grpArtwork.SuspendLayout();
             grpBuild.SuspendLayout();
+            grpPackagePreview.SuspendLayout();
             SuspendLayout();
             // 
             // pnlHeader
@@ -424,11 +427,34 @@
             lblOutputFolder.TabIndex = 0;
             lblOutputFolder.Text = "Output Folder:";
             // 
+            // grpPackagePreview
+            // 
+            grpPackagePreview.Controls.Add(txtPackagePreview);
+            grpPackagePreview.Location = new Point(25, 591);
+            grpPackagePreview.Name = "grpPackagePreview";
+            grpPackagePreview.Size = new Size(1025, 147);
+            grpPackagePreview.TabIndex = 5;
+            grpPackagePreview.TabStop = false;
+            grpPackagePreview.Text = "Package Preview";
+            // 
+            // txtPackagePreview
+            // 
+            txtPackagePreview.Location = new Point(20, 22);
+            txtPackagePreview.Multiline = true;
+            txtPackagePreview.Name = "txtPackagePreview";
+            txtPackagePreview.ReadOnly = true;
+            txtPackagePreview.ScrollBars = ScrollBars.Vertical;
+            txtPackagePreview.Size = new Size(985, 110);
+            txtPackagePreview.TabIndex = 0;
+            txtPackagePreview.TabStop = false;
+            txtPackagePreview.Text = "Workshop package contents will appear here.";
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1084, 721);
+            ClientSize = new Size(1084, 750);
+            Controls.Add(grpPackagePreview);
             Controls.Add(grpBuild);
             Controls.Add(grpArtwork);
             Controls.Add(grpPlugin);
@@ -449,6 +475,8 @@
             grpArtwork.PerformLayout();
             grpBuild.ResumeLayout(false);
             grpBuild.PerformLayout();
+            grpPackagePreview.ResumeLayout(false);
+            grpPackagePreview.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -489,5 +517,7 @@
         private Button btnBuildPackage;
         private Button btnOpenPackageFolder;
         private Button btnNewPackage;
+        private GroupBox grpPackagePreview;
+        private TextBox txtPackagePreview;
     }
 }

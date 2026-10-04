@@ -23,6 +23,9 @@ namespace DeepCoreWorkshopBuilder
             // Load the saved output folder.
             txtOutputFolder.Text =
                 Properties.Settings.Default.DefaultOutputFolder;
+
+            // Show the initial Workshop package structure.
+            UpdatePackagePreview();
         }
 
         private void btnBrowseDll_Click(object sender, EventArgs e)
@@ -40,6 +43,9 @@ namespace DeepCoreWorkshopBuilder
 
              // The selected plugin DLL has changed.
                 MarkPackageChanged();
+
+             // Refresh the Workshop package preview.
+                UpdatePackagePreview();
 
                 FileInfo dllFile = new FileInfo(dialog.FileName);
 
@@ -69,6 +75,9 @@ namespace DeepCoreWorkshopBuilder
 
              // The selected preview image has changed.
                 MarkPackageChanged();
+             
+             // Refresh the Workshop package preview.
+                UpdatePackagePreview();
 
                 using Image image = Image.FromFile(dialog.FileName);
 
@@ -101,6 +110,9 @@ namespace DeepCoreWorkshopBuilder
 
              // The selected thumbnail image has changed.
                 MarkPackageChanged();
+
+             // Refresh the Workshop package preview.
+                UpdatePackagePreview();
 
                 using Image image = Image.FromFile(dialog.FileName);
 
@@ -734,6 +746,9 @@ namespace DeepCoreWorkshopBuilder
             // Allow automatic Mod ID generation again for the next package.
             modIdManuallyEdited = false;
 
+            // Refresh the Workshop package preview.
+            UpdatePackagePreview();
+
             // Put the cursor ready for the next mod.
             txtModName.Focus();
         }
@@ -742,6 +757,9 @@ namespace DeepCoreWorkshopBuilder
         {
             // The package details have changed since the last build.
             MarkPackageChanged();
+
+            // Refresh the Workshop package preview.
+            UpdatePackagePreview();
 
             // If the user has manually changed the Mod ID,
             // leave their custom value alone.
@@ -766,6 +784,9 @@ namespace DeepCoreWorkshopBuilder
             }
 
             updatingModIdAutomatically = false;
+
+            // Refresh the preview after the automatic Mod ID update.
+            UpdatePackagePreview();
         }
 
         private void txtModId_TextChanged(object sender, EventArgs e)
@@ -799,6 +820,35 @@ namespace DeepCoreWorkshopBuilder
         private void txtDescription_TextChanged(object sender, EventArgs e)
         {
             MarkPackageChanged();
+        }
+
+        private void UpdatePackagePreview()
+        {
+            string modId = txtModId.Text.Trim();
+
+            string dllName = string.IsNullOrWhiteSpace(txtDllPath.Text)
+                ? "[Plugin DLL]"
+                : Path.GetFileName(txtDllPath.Text.Trim());
+
+            string previewExtension = string.IsNullOrWhiteSpace(txtPreviewPath.Text)
+                ? ".png"
+                : Path.GetExtension(txtPreviewPath.Text.Trim());
+
+            string thumbnailExtension = string.IsNullOrWhiteSpace(txtThumbnailPath.Text)
+                ? ".png"
+                : Path.GetExtension(txtThumbnailPath.Text.Trim());
+
+            string packageName = string.IsNullOrWhiteSpace(modId)
+                ? "[Mod ID]"
+                : modId;
+
+            txtPackagePreview.Text =
+                $"{packageName}\r\n" +
+                $"├── {dllName}\r\n" +
+                $"└── About\r\n" +
+                $"    ├── About.xml\r\n" +
+                $"    ├── Preview{previewExtension}\r\n" +
+                $"    └── thumb{thumbnailExtension}";
         }
     }
 }
