@@ -66,16 +66,19 @@
             lblOutputFolder = new Label();
             grpPackagePreview = new GroupBox();
             txtPackagePreview = new TextBox();
+            picDeepCoreLogo = new PictureBox();
             pnlHeader.SuspendLayout();
             grpModDetails.SuspendLayout();
             grpPlugin.SuspendLayout();
             grpArtwork.SuspendLayout();
             grpBuild.SuspendLayout();
             grpPackagePreview.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)picDeepCoreLogo).BeginInit();
             SuspendLayout();
             // 
             // pnlHeader
             // 
+            pnlHeader.Controls.Add(picDeepCoreLogo);
             pnlHeader.Controls.Add(lblTagline);
             pnlHeader.Controls.Add(lblTitle);
             pnlHeader.Dock = DockStyle.Top;
@@ -449,6 +452,16 @@
             txtPackagePreview.TabStop = false;
             txtPackagePreview.Text = "Workshop package contents will appear here.";
             // 
+            // picDeepCoreLogo
+            // 
+            picDeepCoreLogo.Image = Properties.Resources.DeepCoreMods_TransParentBG_Avatar;
+            picDeepCoreLogo.Location = new Point(920, 8);
+            picDeepCoreLogo.Name = "picDeepCoreLogo";
+            picDeepCoreLogo.Size = new Size(100, 75);
+            picDeepCoreLogo.SizeMode = PictureBoxSizeMode.Zoom;
+            picDeepCoreLogo.TabIndex = 2;
+            picDeepCoreLogo.TabStop = false;
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -477,6 +490,7 @@
             grpBuild.PerformLayout();
             grpPackagePreview.ResumeLayout(false);
             grpPackagePreview.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)picDeepCoreLogo).EndInit();
             ResumeLayout(false);
         }
 
@@ -519,5 +533,6 @@
         private Button btnNewPackage;
         private GroupBox grpPackagePreview;
         private TextBox txtPackagePreview;
+        private PictureBox picDeepCoreLogo;
     }
 }
